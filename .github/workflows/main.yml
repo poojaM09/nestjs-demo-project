@@ -44,7 +44,7 @@ jobs:
 
       - name: Build and Push Docker Image
         run: |
-          echo "${{ secrets.dckr_pat_dsdPPXsqbtEDv7M3fLRhGoKIO60 }}" | docker login -u "poojamishra1" --password-stdin https://hub.docker.com/
+          echo "${{ secrets.DOCKER_TOKEN }}" | docker login -u "poojamishra1" --password-stdin https://hub.docker.com/
           docker build --no-cache -t poojamishra1/bookproject:latest .
           docker push poojamishra1/bookproject:latest
 
