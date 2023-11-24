@@ -50,13 +50,10 @@ services:
       - "5050:80"
     depends_on:
       - db
-    
-  networks:
+
+networks:
   my_network:
     driver: bridge
 
-  volumes:
-    pgadmin4:
-
-
-
+volumes:
+  pgadmin4:
