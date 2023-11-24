@@ -49,4 +49,4 @@ jobs:
           docker push poojamishra1/bookproject:latest
 
       - name: Deploy to Docker Compose
-        run: docker-compose -f ../../../docker-compose.yml up -d
+        run: docker-compose -f ../../docker-compose.yml up -d
