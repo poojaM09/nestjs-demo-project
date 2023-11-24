@@ -22,7 +22,6 @@
 #     depends_on:
 #       - db
 
-
 version: '3'
 services:
   app:
@@ -31,7 +30,7 @@ services:
     ports:
       - "3000:3000"
     depends_on:
-      - db  # Change this to 'db' instead of 'postgres'
+      - db
   db:
     image: postgres:latest
     restart: always
@@ -40,7 +39,7 @@ services:
       POSTGRES_USER: postgres
       POSTGRES_PASSWORD: 1234
   pgadmin:
-    container_name: dpage/pgadmin4
+    container_name: pgadmin-container  # Change this to a valid name
     restart: always
     image: dpage/pgadmin4
     environment:
@@ -57,4 +56,3 @@ networks:
 
 volumes:
   pgadmin4:
-
