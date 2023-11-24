@@ -44,9 +44,10 @@ jobs:
 
       - name: Build and Push Docker Image
         run: |
-         echo "$pooja.mishra@" | docker login -u "pooja.mishra@plutustec.com" --password-stdin https://hub.docker.com/
-         docker build --no-cache -t poojamishra1/bookproject:latest .
-         docker push poojamishra1/bookproject:latest
+           echo "${{ secrets.BOOKSTORE }}" | docker login -u "poojamishra1" --password-stdin https://hub.docker.com/
+           docker build --no-cache -t poojamishra1/bookproject:latest .
+           docker push poojamishra1/bookproject:latest
+
 
       - name: Deploy to Docker Compose
         run: docker-compose up -d
