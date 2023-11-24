@@ -1,24 +1,24 @@
-version: '3'
-services:
-  app:
-    image: poojamishra1/bookproject:latest
-    ports:
-      - "3000:3000"
-    depends_on:
-      - db
-  db:
-    image: postgres:latest
-    environment:
-      POSTGRES_DB: booksstore
-      POSTGRES_USER: postgres
-      POSTGRES_PASSWORD: 1234
-  pgadmin:
-    image: dpage/pgadmin4
-    environment:
-      PGADMIN_DEFAULT_EMAIL: pooja.mishra@plutustec.com
-      PGADMIN_DEFAULT_PASSWORD: 1234
-    ports:
-      - "5050:80"
-    depends_on:
-      - db
+# Use the official Node.js image as base image
+FROM node:18-alpine
 
+# Set the working directory in the container
+# Set the working directory in the container
+WORKDIR /Backend-Test-Task/src/app
+
+# Copy package.json and package-lock.json to the working directory
+COPY package*.json ./
+
+# Install dependencies
+RUN npm install --force 
+
+# Copy the rest of the application code
+COPY . .
+
+# Build the application
+RUN npm run build
+
+# Expose the port your app runs on
+EXPOSE 3000
+
+# Start the application in production mode
+CMD ["npm", "run", "start:prod"]
