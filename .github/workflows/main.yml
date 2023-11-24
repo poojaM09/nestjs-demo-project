@@ -34,7 +34,7 @@ jobs:
 
       - name: Set up Docker
         uses: actions/setup-docker@v2
-        
+
       - name: Set up Docker
         run: |
           sudo apt-get install -y docker.io
@@ -42,10 +42,12 @@ jobs:
           sudo systemctl enable docker
 
       - name: Build and Push Docker Image
+      - name: Build and Push Docker Image
         run: |
-          echo "${{ secrets.BOOKSTORE }}" | docker login -u pooja.mishra@plutustec.com --password-stdin
-          docker build --no-cache -t poojamishra1/bookproject:latest .
-          docker push poojamishra1/bookproject:latest
+         echo "${{ secrets.BOOKSTORE }}" | docker login -u "pooja.mishra@plutustec.com" --password-stdin
+         docker build --no-cache -t poojamishra1/bookproject:latest .
+         docker push poojamishra1/bookproject:latest
+    
 
       - name: Deploy to Docker Compose
         run: docker-compose up -d
