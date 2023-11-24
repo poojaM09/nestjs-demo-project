@@ -44,7 +44,7 @@ jobs:
 
       - name: Build and Push Docker Image
         run: |
-          echo "${{ secrets.BOOKSTORE }}" | docker login -u pooja.mishra@plutustec.com --password-stdin
+          echo "${{ secrets.BOOKSTORE }}" | docker login -u poojamishra1 --password-stdin
           docker build --no-cache -t poojamishra1/bookproject:latest .
           docker push poojamishra1/bookproject:latest
 
