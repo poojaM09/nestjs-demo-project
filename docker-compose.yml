@@ -30,7 +30,7 @@ services:
     ports:
       - "3000:3000"
     depends_on:
-      - db
+      - postgres
   db:
     image: postgres:latest
     restart: always
@@ -39,7 +39,7 @@ services:
       POSTGRES_USER: postgres
       POSTGRES_PASSWORD: 1234
   pgadmin:
-    container_name: pgadmin-container  # Change this to a valid name
+    container_name: dpage/pgadmin4
     restart: always
     image: dpage/pgadmin4
     environment:
