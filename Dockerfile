@@ -1,5 +1,5 @@
 # Use the official Node.js image as base image
-FROM node:18-alpine
+FROM node:14-alpine
 
 # Set the working directory in the container
 # Set the working directory in the container
@@ -9,7 +9,7 @@ WORKDIR /Backend-Test-Task/src/app
 COPY package*.json ./
 
 # Install dependencies
-RUN npm install --force 
+RUN npm install 
 
 # Copy the rest of the application code
 COPY . .
