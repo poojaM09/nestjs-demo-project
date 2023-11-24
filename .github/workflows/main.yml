@@ -16,7 +16,7 @@ jobs:
       - name: Set up Node.js
         uses: actions/setup-node@v2
         with:
-          node-version: 14  # Set the Node.js version as needed
+          node-version: 18  
 
       - name: Install Dependencies
         run: npm install
@@ -34,72 +34,18 @@ jobs:
 
       - name: Set up Docker
         uses: actions/setup-docker@v2
+        
+      - name: Set up Docker
+        run: |
+          sudo apt-get install -y docker.io
+          sudo systemctl start docker
+          sudo systemctl enable docker
 
       - name: Build and Push Docker Image
         run: |
-          echo ${{ secrets.BOOKSTORE }} | docker login -u pooja.mishra@plutustec.com --password-stdin
+          echo "${{ secrets.BOOKSTORE }}" | docker login -u pooja.mishra@plutustec.com --password-stdin
           docker build --no-cache -t poojamishra1/bookproject:latest .
           docker push poojamishra1/bookproject:latest
 
       - name: Deploy to Docker Compose
         run: docker-compose up -d
-
-
-
-
-
-# name: Node.js CI/CD
-
-# on:
-#   push:
-#     branches:
-#       - main
-
-# jobs:
-#   build:
-#     runs-on: ubuntu-latest
-
-#     steps:
-#       - name: Checkout Repository
-#         uses: actions/checkout@v2
-
-#       - name: Set up Node.js
-#         uses: actions/setup-node@v2
-#         with:
-#           node-version: 18
-
-#       - name: Install Dependencies
-#         run: npm install
-
-#       - name: Run Tests
-#         run: npm test
-
-  # deploy:
-  #   runs-on: ubuntu-latest
-
-  #   needs: build
-
-    # steps:
-      # - name: Checkout Repository
-      #   uses: actions/checkout@v2
-
-      # - name: Set up Docker
-      #   uses: actions/setup-docker@v2
-
-      # - name: Build Docker Image
-          # run:
-          #      echo: "${{secrets.BOOKSTORE}}" | docker login -u "pooja.mishra@plutustec.com"  --password-pooja.mishra@
-          #      docker build --no-cache -t poojamishra1/bookproject:latest . 
-  
-
-      # - name: Push Docker Image
-      #   uses: docker/build-push-action@v2
-      #   with:
-      #     context: .
-      #     push: true
-      #     tags: poojamishra1/bookproject:latest
-
-      # - name: Deploy to Docker Compose
-      #   run: docker-compose up -d
-
-      
