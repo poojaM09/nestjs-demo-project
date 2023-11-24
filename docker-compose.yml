@@ -31,7 +31,7 @@ services:
     ports:
       - "3000:3000"
     depends_on:
-      - postgres
+      - db  # Change this to 'db' instead of 'postgres'
   db:
     image: postgres:latest
     restart: always
@@ -57,3 +57,4 @@ networks:
 
 volumes:
   pgadmin4:
+
