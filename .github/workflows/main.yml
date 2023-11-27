@@ -42,11 +42,9 @@ jobs:
           sudo apt-get update
           sudo apt-get install -y docker-ce docker-ce-cli containerd.io
 
-      - name: Set up Docker
+      - name: Set up Docker Compose
         run: |
-          sudo apt-get install -y docker.io
-          sudo systemctl start docker
-          sudo systemctl enable docker
+          sudo apt-get install -y docker-compose
 
       - name: Build and Push Docker Image
         run: |
@@ -55,4 +53,5 @@ jobs:
           docker push poojamishra1/bookproject:latest
 
       - name: Deploy to Docker Compose
-        run: docker-compose up -d
+        run: |
+          docker-compose up -d
